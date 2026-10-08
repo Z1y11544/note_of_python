@@ -90,3 +90,39 @@
 #         return aplatir(L[0]) + aplatir(L[1:])
 #     return [L[0]] + aplatir(L[1:])
 # print(aplatir([1, [2, 3], [4, [5, 6]]]))
+
+# EX7
+# c)
+# def memoisation_fib():
+#     memo = {}
+
+#     def fibonacci(n):
+#         if n in memo:
+#             return memo[n]
+#         if n == 0 or n == 1:
+#             return n
+#         memo[n] = fibonacci(n-1)+ fibonacci(n-2)
+#         return memo[n]
+
+#     return fibonacci
+# fib = memoisation_fib()
+# print(fib(5))
+# b) O(n)
+
+# EX8
+# def hanoi(n,source,destination,auxiliaire):
+#     if n == 1:
+#         print(f"Deplacement 1 de {source} à {destination}")
+#     else:
+#         hanoi(n-1,source,auxiliaire,destination)
+#         print(f"Deplacement {n} de {source} à {destination}")
+#         hanoi(n-1,auxiliaire,destination,source)
+# hanoi(3,"A","C","B")
+
+def plindrom_recur(chaine):
+    if len(chaine) == 0:
+        return True
+    if chaine[0] == chaine[len(chaine)-1]:
+        return plindrom_recur(chaine[1:len(chaine)-2])
+    return False
+print(plindrom_recur("non"))

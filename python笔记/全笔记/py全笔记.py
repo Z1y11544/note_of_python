@@ -1848,13 +1848,13 @@ li = ['a','b','c','d']
 # 1.2 隐藏属性(私有权限)
 # 只允许再类的内部使用,无法通过对象访问
 # 在属性名或者方法前面加上两个下划线__
-class Person:
-    name = "James"  # 类属性
-    __age = 28      # 隐藏属性
-    def intro(self):# 实例方法
-        print(f"{Person.name}的年龄是{Person.__age}")   # 在实例方法中访问类属性和隐藏属性
-pe = Person()
-print(pe.name)
+# class Person:
+#     name = "James"  # 类属性
+#     __age = 28      # 隐藏属性
+#     def intro(self):# 实例方法
+#         print(f"{Person.name}的年龄是{Person.__age}")   # 在实例方法中访问类属性和隐藏属性
+# pe = Person()
+# print(pe.name)
 # print(pe.age)
 # 第一种(了解)
 # 隐藏属性实际上是将名字修改为_类名__属性名
@@ -1862,9 +1862,43 @@ print(pe.name)
 # pe._Person__age = 42
 # print(pe._Person__age)
 # 第二种:   在类的内部访问
-pe.intro()
+# pe.intro()
 
 # 1.3 私有属性/方法
 # 一、xxx:普通属性/方法,如果是类中定义的,
-# 二、__xxx:双下划线开头,隐藏属性,如果定义在类中
-#           无法在外部直接访问,子类不会继承
+# 二、_xxx:单下划线开头，声明私有属性/方法，如果定义在类中，外部可以使用
+#          子类也可以继承，但是在另一个py文件中通过from xxx improt *导入时，无法导入
+#    一般是为了避免与python关键字冲突而采用的命名方法
+# 三、__xxx:双下划线开头,隐藏属性,如果定义在类中无法在外部直接访问
+#           子类不会继承，要访问的话只能通过间接的方式
+#           另一个py文件通过from xxx import *导入也无法导入
+#    这种命名一般是python中的魔术方法或属性，都是有特殊含义或功能
+#    自己不要轻易定义
+# class Person:
+#     name = "颂雪情燕"
+#     __age = 54             #隐藏属性
+#     _sex = "不男不女"       #私有属性
+# pe = Person()
+# print(pe.sex)              #报错
+# 使用对象名._属性名调用
+# print(pe._sex)
+# 使用对象.类名__属性名访问隐藏属性
+# print(pe.Person__age)
+# 4.4 隐藏方法
+# class Man:
+#     def __play(self):        # 隐藏方法   
+#         print("玩手机")
+#     def funa(self):          # 普通实例方法
+#         print("平平无奇的method")
+#         # Man.__play(self)   #不推荐
+#         self.__play()
+# ma = Man()
+# ma.funa()
+# ma._Man__play()
+
+# 4.5 私有方法
+# class Girl:
+#     def _buy(self):          # 私有方法
+#         print("购物购物购物")
+# girl = Girl()
+# girl._buy()
